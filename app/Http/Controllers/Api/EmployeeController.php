@@ -61,6 +61,7 @@ class EmployeeController extends Controller
                 'email'     =>  $request->email,
                 'password' => Hash::make($request->password), 
                 'phone'     =>  $request->phone,
+                'dateOfBirth' => $request->dateOfBirth,
                 'created_by' =>  $request->created_by,
                 'updated_by' =>  $request->updated_by,
             ]);
@@ -114,9 +115,9 @@ class EmployeeController extends Controller
             $emp->update([
                 'firstName' => $request->firstName ?? $emp->firstName,
                 'lastName' => $request->lastName ?? $emp->lastName,
-                'companyName' => $request->companyName ?? $emp->companyName,
                 'email' => $request->email ?? $emp->email,
                 'phone' => $request->phone ?? $emp->phone,
+                'dateOfBirth' => $request->dateOfBirth ?? $emp->dateOfBirth,
                 'updated_by' => $request->updated_by ?? $emp->updated_by,
                 'created_by' => $request->created_by ?? $emp->created_by
             ]);
@@ -139,6 +140,27 @@ class EmployeeController extends Controller
             ], 500); 
         }
     }
+
+    public function login(Request $request){
+        $request->validate([
+            'email'=> 'required|string',
+            'password'=>'required|string'
+        ]);
+
+        $emp = Employee::where('email', $request->email)->first();
+
+        if(!$emp || !Hash::check($request->password, $emp->password)){
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+
+        $token = $emp->createToken('EmployeeToken')->accessToken;
+
+        return response()->json([
+            'message' => 'Employee Login successful',
+            'token' => $token
+        ], 200);
+    }
+
 
     public function delete(Request $request, $id = null){
         if($id!=null){
