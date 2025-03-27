@@ -62,7 +62,7 @@ class EmployeeController extends Controller
                 'password' => Hash::make($request->password), 
                 'phone'     =>  $request->phone,
                 'created_by' =>  $request->created_by,
-                'updated_by' =>  $request->created_by,
+                'updated_by' =>  $request->updated_by,
             ]);
 
             return response()->json([
