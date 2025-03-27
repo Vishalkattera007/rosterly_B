@@ -43,8 +43,13 @@ return [
         'api'=>[
             'driver'=>'passport',
             'provider'=> 'admins'
+        ],
+        'emp'=>[
+            'driver'=>'passport',
+            'provider'=> 'employees'
         ]
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -72,6 +77,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Admin::class),
+        ],
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Employee::class),
         ]
 
         // 'users' => [

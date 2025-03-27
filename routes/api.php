@@ -15,6 +15,7 @@ Route::post('/oauth/token/refresh', [TransientTokenController::class, 'refresh']
 
 // 🔹 Admin Authentication
 Route::post('admin/login', [AdminAuthController::class, 'login'])->name('login');
+Route::post('employee/login', [EmployeeController::class, 'login'])->name('login');
 
 // 🔹 Protected Routes (Require Authentication)
 Route::middleware('auth:api')->group(function () {
