@@ -31,8 +31,6 @@ class LocationController extends Controller
             'data'=> $loc
             ]);
         }
-
-        
     }
     
     public function create(Request $request)
