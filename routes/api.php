@@ -17,7 +17,7 @@ Route::post('/oauth/token/refresh', [TransientTokenController::class, 'refresh']
 Route::post('admin/login', [AdminAuthController::class, 'login'])->name('login');
 
 // 🔹 Protected Routes (Require Authentication)
-Route::middleware('auth:api')->group(function () {
+// Route::middleware('auth:api')->group(function () {
 
     // 🛑 Admin Management Routes
     Route::prefix('admin')->group(function () {
@@ -43,4 +43,4 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/{id}', [EmployeeController::class, 'update']);
         Route::delete('/{id}', [EmployeeController::class, 'delete']);
     });
-});
+// });
