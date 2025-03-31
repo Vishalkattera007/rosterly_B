@@ -40,7 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api'=>[
+            'driver'=>'passport',
+            'provider'=> 'admins'
+        ],
+        'emp'=>[
+            'driver'=>'passport',
+            'provider'=> 'employees'
+        ]
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -60,10 +69,19 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        // 'users' => [
+        //     'driver' => 'eloquent',
+        //     'model' => env('AUTH_MODEL', App\Models\User::class),
+        // ],
+
+        'admins' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => env('AUTH_MODEL', App\Models\Admin::class),
         ],
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Employee::class),
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
