@@ -25,12 +25,13 @@ class AdminAuthController extends Controller
 
         $token = $admin->createToken('AdminToken')->accessToken;
 
-        // Store admin details in session
-       Session::put('admin_name', $admin->FirstName . ' ' . $admin->LastName);
-
         return response()->json([
             'message' => 'Login successful',
-            'token' => $token
+            'token' => $token,
+            'admin' => [
+            'firstName' => $admin->firstName,
+            'lastName' => $admin->lastName
+            ]
         ], 200);
     }
 
