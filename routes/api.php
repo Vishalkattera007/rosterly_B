@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AdminAuthController;
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\LocationController;
+use App\Http\Controllers\Api\RoleController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Http\Controllers\AccessTokenController;
 use Laravel\Passport\Http\Controllers\AuthorizationController;
@@ -42,5 +43,13 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/', [EmployeeController::class, 'create']);
         Route::put('/{id}', [EmployeeController::class, 'update']);
         Route::delete('/{id}', [EmployeeController::class, 'delete']);
+    });
+
+    // 👨‍💼 Role Management Routes
+    Route::prefix('role')->group(function () {
+        Route::get('/{id?}', [RoleController::class, 'index']);
+        Route::post('/', [RoleController::class, 'create']);
+        Route::put('/{id}', [RoleController::class, 'update']);
+        Route::delete('/{id}', [RoleController::class, 'delete']);
     });
 });

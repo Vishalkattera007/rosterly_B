@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminAuthController extends Controller
 {
@@ -23,6 +24,9 @@ class AdminAuthController extends Controller
         }
 
         $token = $admin->createToken('AdminToken')->accessToken;
+
+        // Store admin details in session
+       Session::put('admin_name', $admin->FirstName . ' ' . $admin->LastName);
 
         return response()->json([
             'message' => 'Login successful',

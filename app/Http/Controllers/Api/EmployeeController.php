@@ -164,7 +164,10 @@ class EmployeeController extends Controller
 
     public function delete(Request $request, $id = null){
         if($id!=null){
-            return response()->json([
+            $emp = Employee::find($id);
+            if($emp){
+                $emp->delete();
+                return response()->json([
                 'message'=>"Employee {$id} Deleted Successfully",
             ]);
         }else{
@@ -173,4 +176,6 @@ class EmployeeController extends Controller
             ]);
         }
     }
+ }
 }
+    
